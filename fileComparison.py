@@ -4,9 +4,10 @@
 import os
 import filecmp
 
-
 # returns a list of all files in directory and sub-directorys
 # takes directory location as parameter
+
+
 def getListOfFiles(dirName):
     # create a list of file and sub directories
     # names in the given directory
@@ -41,6 +42,26 @@ def compareFiles(listOfFiles):
                 else:
                     print("%s is a copy of %s" % (files, files2))
                     duplicateFilesList.append(files)
+    if len(duplicateFilesList) == 0:
+        print("no duplicates found")
 
-# TODO: check if arguments have been given else ask user to give location
-# TODO: add main function loop that ask user to add give directory location
+# Ask user for folder location
+
+
+def getFolderLocation():
+    while True:
+
+        print("Please enter folder location")
+        location = input()
+
+        if os.path.exists(location):
+            compareFiles(getListOfFiles(location))
+        else:
+            print("location given is not a folder location")
+            answer = input("Would you like to give another location: ")
+            if answer.lower.startswith('n'):
+                exit()
+
+# TODO: ask user if they want to delete files
+
+# TODO: Make main method
