@@ -3,11 +3,29 @@
 # and identify duplicate files
 import os
 import filecmp
+import send2trash
+
+
+# Ask user for folder location
+def getFolderLocation():
+    a = True
+    hold = list()
+    while a:
+        location = input("Please enter folder location: ")
+
+        if os.path.exists(location):
+            hold = compareFiles(getListOfFiles(location))
+        else:
+            print("location given is not a folder location")
+
+        answer = input("Would you like to give another location: ")
+        if answer.lower().startswith('n'):
+            a = False
+    return hold
+
 
 # returns a list of all files in directory and sub-directorys
 # takes directory location as parameter
-
-
 def getListOfFiles(dirName):
     # create a list of file and sub directories
     # names in the given directory
@@ -25,9 +43,8 @@ def getListOfFiles(dirName):
 
     return allFiles
 
+
 # compares all files in given list of files
-
-
 def compareFiles(listOfFiles):
     # list of all duplicate files
     duplicateFilesList = list()
@@ -44,24 +61,21 @@ def compareFiles(listOfFiles):
                     duplicateFilesList.append(files)
     if len(duplicateFilesList) == 0:
         print("no duplicates found")
+        return list()
+    else:
+        return duplicateFilesList
 
-# Ask user for folder location
 
+# ask user what to do with files
+def whatToDoWithFiles(listOfFiles):
+    x = input("Would you like delete files ,rename or nothing:  ")
+    # move to trash
+    if x.lower().startswith('d'):
+        for file in listOfFiles:
+            send2trash.send2trash(file)
+    # TODO: rename files
+    # TODO: nothing
 
-def getFolderLocation():
-    while True:
-
-        print("Please enter folder location")
-        location = input()
-
-        if os.path.exists(location):
-            compareFiles(getListOfFiles(location))
-        else:
-            print("location given is not a folder location")
-            answer = input("Would you like to give another location: ")
-            if answer.lower.startswith('n'):
-                exit()
-
-# TODO: ask user if they want to delete files
 
 # TODO: Make main method
+whatToDoWithFiles(getFolderLocation())
