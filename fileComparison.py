@@ -78,5 +78,7 @@ def whatToDoWithFiles(listOfFiles):
         print('files have been left untoachted')
         exit()
 
-# TODO: Make main method
-whatToDoWithFiles(getFolderLocation())
+
+# Make main method
+def main():
+    whatToDoWithFiles(getFolderLocation())
