@@ -68,14 +68,15 @@ def compareFiles(listOfFiles):
 
 # ask user what to do with files
 def whatToDoWithFiles(listOfFiles):
-    x = input("Would you like delete files ,rename or nothing:  ")
+    x = input("Would you like delete files or nothing:  ")
     # move to trash
     if x.lower().startswith('d'):
         for file in listOfFiles:
             send2trash.send2trash(file)
-    # TODO: rename files
-    # TODO: nothing
-
+    # nothing
+    else:
+        print('files have been left untoachted')
+        exit()
 
 # TODO: Make main method
 whatToDoWithFiles(getFolderLocation())
