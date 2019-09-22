@@ -73,7 +73,7 @@ def whatToDoWithFiles(listOfFiles):
     if x.lower().startswith('d'):
         for file in listOfFiles:
             send2trash.send2trash(file)
-    # nothing
+    # does nothing with files
     else:
         print('files have been left untoachted')
         exit()
