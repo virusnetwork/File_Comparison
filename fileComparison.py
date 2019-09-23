@@ -5,6 +5,7 @@ import os
 import filecmp
 import send2trash
 
+#TODO: fix slowness on windows
 
 # Ask user for folder location
 def getFolderLocation():
@@ -73,6 +74,7 @@ def whatToDoWithFiles(listOfFiles):
     if x.lower().startswith('d'):
         for file in listOfFiles:
             send2trash.send2trash(file)
+            print('files have been sent to trash')
     # nothing
     else:
         print('files have been left untoachted')
@@ -82,3 +84,5 @@ def whatToDoWithFiles(listOfFiles):
 # Make main method
 def main():
     whatToDoWithFiles(getFolderLocation())
+
+main()
