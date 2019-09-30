@@ -1,6 +1,6 @@
 #! python3
-# fileComparison.py - compares all files in a directory and all files in sub-directorys
-# and identify duplicate files
+# fileComparison.py - compares all files in a directory, 
+# all files in sub-directorys and identify duplicate files
 import os
 import filecmp
 import send2trash
@@ -69,9 +69,9 @@ def compareFiles(listOfFiles):
 
 # ask user what to do with files
 def whatToDoWithFiles(listOfFiles):
-    x = input("Would you like delete files or nothing:  ")
+    x = input("Would you like delete files:  ")
     # move to trash
-    if x.lower().startswith('d'):
+    if x.lower().startswith('d') or x.lower().startswith('y'):
         for file in listOfFiles:
             send2trash.send2trash(file)
             print('files have been sent to trash')
